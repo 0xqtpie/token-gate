@@ -33,18 +33,28 @@ TokenGate is a productivity tool that helps you stay focused by blocking distrac
 
 ## Quick Start
 
-### 1. Start the Server
+### 1. Install the Server
 
 ```bash
-# Run without installing
-bunx tokengate-server
-
-# Or install globally
+# Install globally
 bun add -g tokengate-server
-tokengate-server
+
+# Install as background service (auto-starts on login)
+tokengate-server install
 ```
 
-The server runs on `http://localhost:3847` by default.
+The server runs on `http://localhost:3847` and will start automatically when you log in.
+
+#### Server Commands
+
+```bash
+tokengate-server install    # Install and start as background service
+tokengate-server uninstall  # Stop and remove service
+tokengate-server start      # Start the service
+tokengate-server stop       # Stop the service
+tokengate-server status     # Check if running, show PID
+tokengate-server run        # Run in foreground (for debugging)
+```
 
 ### 2. Install the Extension
 

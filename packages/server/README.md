@@ -5,29 +5,74 @@ Local HTTP server that aggregates token usage from multiple AI coding tools.
 ## Installation
 
 ```bash
-# Run without installing
-bunx tokengate-server
+# Run without installing (foreground)
+bunx tokengate-server run
 
 # Or install globally
 bun add -g tokengate-server
-tokengate-server
 ```
 
 ## Usage
 
+### Background Service (Recommended)
+
+Install as a background service that auto-starts on login:
+
+```bash
+# Install and start as background service
+tokengate-server install
+
+# Check status
+tokengate-server status
+
+# Stop the service
+tokengate-server stop
+
+# Start the service
+tokengate-server start
+
+# Uninstall (stops and removes service)
+tokengate-server uninstall
+```
+
+### Foreground Mode
+
+Run in foreground for debugging:
+
 ```bash
 # Start with defaults (port 3847)
-tokengate-server
+tokengate-server run
 
 # Custom port
-PORT=8080 tokengate-server
+PORT=8080 tokengate-server run
 
 # Custom cache TTL (seconds)
-CACHE_TTL=60 tokengate-server
+CACHE_TTL=60 tokengate-server run
 
 # Enable only specific adapters
-ADAPTERS=claude-code,opencode tokengate-server
+ADAPTERS=claude-code,opencode tokengate-server run
 ```
+
+### CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `tokengate-server install` | Install and start as background service |
+| `tokengate-server uninstall` | Stop and remove service |
+| `tokengate-server start` | Start the service |
+| `tokengate-server stop` | Stop the service |
+| `tokengate-server status` | Check if running, show PID |
+| `tokengate-server run` | Run in foreground (default) |
+
+### Platform Support
+
+| Platform | Service Type |
+|----------|--------------|
+| macOS | LaunchAgent (`~/Library/LaunchAgents/`) |
+| Linux | systemd user service (`~/.config/systemd/user/`) |
+| Windows | Scheduled Task with VBS wrapper |
+
+Logs are stored in `~/.tokengate/logs/`.
 
 ## API Endpoints
 
