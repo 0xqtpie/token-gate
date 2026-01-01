@@ -30,7 +30,7 @@ async function loadData() {
     const usage = await response.json();
 
     statusIndicator.className = "status-indicator connected";
-    statusText.textContent = "Connected";
+    statusText.textContent = "SYSTEM_ONLINE";
 
     const currentTokens = usage.total?.totalTokens ?? 0;
     const threshold = config.tokenThreshold;
@@ -44,12 +44,20 @@ async function loadData() {
     const availableBreakdown = (usage.breakdown || []).filter(b => b.available);
     
     if (availableBreakdown.length > 0) {
-      breakdownEl.innerHTML = availableBreakdown.map(b => `
+      const headerHtml = `
+        <div class="breakdown-header">
+          <span>SOURCE_DATA</span>
+          <span>TOKENS</span>
+        </div>`;
+        
+      const itemsHtml = availableBreakdown.map(b => `
         <div class="breakdown-item">
-          <span class="breakdown-name">${b.displayName}</span>
+          <span class="breakdown-name">${b.displayName.toUpperCase().replace(" ", "_")}</span>
           <span class="breakdown-tokens">${formatTokens(b.totalTokens)}</span>
         </div>
       `).join("");
+      
+      breakdownEl.innerHTML = headerHtml + itemsHtml;
       breakdownEl.classList.remove("hidden");
     } else {
       breakdownEl.classList.add("hidden");
@@ -61,12 +69,12 @@ async function loadData() {
 
   } catch (err) {
     statusIndicator.className = "status-indicator disconnected";
-    statusText.textContent = "Disconnected";
+    statusText.textContent = "OFFLINE";
     
     loading.classList.add("hidden");
     content.classList.add("hidden");
     error.classList.remove("hidden");
-    document.getElementById("error-message").textContent = "Cannot connect to server. Is it running?";
+    document.getElementById("error-message").textContent = "FATAL_ERROR: SERVER_UNREACHABLE";
   }
 }
 

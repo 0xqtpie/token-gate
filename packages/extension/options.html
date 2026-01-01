@@ -2,80 +2,104 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>TokenGate Settings</title>
+  <title>TokenGate // Configuration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="options.css">
 </head>
 <body>
+  <div class="scanline"></div>
   <div class="options-container">
     <header class="options-header">
-      <h1>TokenGate Settings</h1>
-      <p>Configure your productivity blocking</p>
+      <div class="brand">
+        <span class="brand-icon">█▓</span>
+        <h1>SYSTEM_CONFIG</h1>
+      </div>
+      <p class="subtitle">TokenGate v1.0 // Access Control</p>
     </header>
 
     <main class="options-main">
       <section class="section">
-        <h2>Enable/Disable</h2>
-        <label class="toggle-label">
-          <span>Enable TokenGate blocking</span>
-          <input type="checkbox" id="enable-toggle" checked>
-          <span class="toggle-slider"></span>
-        </label>
-      </section>
-
-      <section class="section">
-        <h2>Token Threshold</h2>
-        <p class="section-description">
-          Minimum tokens required to unblock distracting sites
-        </p>
-        <div class="input-group">
-          <input type="number" id="threshold-input" min="0" step="1000" value="50000">
-          <span class="input-suffix">tokens</span>
+        <div class="section-header">
+          <h2>01 // GLOBAL_OVERRIDE</h2>
+        </div>
+        <div class="section-content">
+          <label class="toggle-label">
+            <span>ACTIVATE_BLOCKING_PROTOCOL</span>
+            <div class="toggle-wrapper">
+              <input type="checkbox" id="enable-toggle" checked>
+              <div class="toggle-switch"></div>
+            </div>
+          </label>
         </div>
       </section>
 
       <section class="section">
-        <h2>Blocked Domains</h2>
-        <p class="section-description">
-          Sites that will be blocked until you hit your token goal.
-          Use *.domain.com for wildcard matching.
-        </p>
-        
-        <div id="domain-list" class="domain-list"></div>
-        
-        <div class="add-domain">
-          <input type="text" id="new-domain-input" placeholder="Enter domain (e.g., twitter.com)">
-          <button id="add-domain-btn" class="btn btn-primary">Add</button>
+        <div class="section-header">
+          <h2>02 // THRESHOLD_LIMITS</h2>
         </div>
-
-        <div class="recommended-domains">
-          <span class="recommended-label">Quick add:</span>
-          <div class="recommended-buttons">
-            <button class="btn btn-small" data-domain="x.com">x.com</button>
-            <button class="btn btn-small" data-domain="twitter.com">twitter.com</button>
-            <button class="btn btn-small" data-domain="reddit.com">reddit.com</button>
-            <button class="btn btn-small" data-domain="youtube.com">youtube.com</button>
-            <button class="btn btn-small" data-domain="netflix.com">netflix.com</button>
-            <button class="btn btn-small" data-domain="instagram.com">instagram.com</button>
-            <button class="btn btn-small" data-domain="facebook.com">facebook.com</button>
-            <button class="btn btn-small" data-domain="pornhub.com">pornhub.com</button>
+        <div class="section-content">
+          <p class="section-description">
+            Set daily token requirement for unblock.
+          </p>
+          <div class="input-group">
+            <span class="input-prefix">VAL:</span>
+            <input type="number" id="threshold-input" min="0" step="1000" value="50000">
+            <span class="input-suffix">TOKENS</span>
           </div>
         </div>
       </section>
 
       <section class="section">
-        <h2>Server Configuration</h2>
-        <p class="section-description">
-          URL of the TokenGate server running on your machine
-        </p>
-        <div class="input-row">
-          <input type="text" id="server-url-input" value="http://localhost:3847">
-          <button id="test-connection-btn" class="btn btn-secondary">Test Connection</button>
+        <div class="section-header">
+          <h2>03 // RESTRICTED_DOMAINS</h2>
         </div>
-        <div id="connection-status" class="connection-status"></div>
+        <div class="section-content">
+          <p class="section-description">
+            Wildcards supported (*.domain.com).
+          </p>
+          
+          <div id="domain-list" class="domain-list"></div>
+          
+          <div class="add-domain">
+            <input type="text" id="new-domain-input" placeholder="INPUT_DOMAIN...">
+            <button id="add-domain-btn" class="btn btn-primary">[ ADD ]</button>
+          </div>
+
+          <div class="recommended-domains">
+            <span class="recommended-label">QUICK_INSERT:</span>
+            <div class="recommended-buttons">
+              <button class="btn btn-small" data-domain="x.com">x.com</button>
+              <button class="btn btn-small" data-domain="twitter.com">twitter.com</button>
+              <button class="btn btn-small" data-domain="reddit.com">reddit.com</button>
+              <button class="btn btn-small" data-domain="youtube.com">youtube.com</button>
+              <button class="btn btn-small" data-domain="netflix.com">netflix.com</button>
+              <button class="btn btn-small" data-domain="instagram.com">instagram.com</button>
+              <button class="btn btn-small" data-domain="facebook.com">facebook.com</button>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="section">
-        <button id="save-btn" class="btn btn-primary btn-large">Save Settings</button>
+        <div class="section-header">
+          <h2>04 // NETWORK_CONFIG</h2>
+        </div>
+        <div class="section-content">
+          <p class="section-description">
+            Local server endpoint.
+          </p>
+          <div class="input-row">
+            <input type="text" id="server-url-input" value="http://localhost:3847">
+            <button id="test-connection-btn" class="btn btn-secondary">[ PING ]</button>
+          </div>
+          <div id="connection-status" class="connection-status"></div>
+        </div>
+      </section>
+
+      <section class="section actions">
+        <button id="save-btn" class="btn btn-primary btn-large">/// COMMIT_CHANGES ///</button>
         <div id="save-status" class="save-status"></div>
       </section>
     </main>

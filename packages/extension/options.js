@@ -65,10 +65,10 @@ async function testConnection() {
     
     const data = await response.json();
     statusEl.className = "connection-status success";
-    statusEl.textContent = `Connected! Server v${data.version} - Adapters: ${data.adapters.join(", ")}`;
+    statusEl.textContent = `UPLINK_ESTABLISHED // V${data.version} // ADAPTERS: ${data.adapters.join(", ").toUpperCase()}`;
   } catch (err) {
     statusEl.className = "connection-status error";
-    statusEl.textContent = "Cannot connect to server. Is it running?";
+    statusEl.textContent = "CONNECTION_FAILURE: CHECK_SERVER_PROCESS";
   }
 }
 
@@ -82,7 +82,7 @@ async function saveSettings() {
   });
   
   const statusEl = document.getElementById("save-status");
-  statusEl.textContent = "Settings saved!";
+  statusEl.textContent = "CONFIGURATION_COMMITTED";
   statusEl.classList.add("visible");
   
   setTimeout(() => {
