@@ -33,7 +33,7 @@ body {
 }
 
 .options-header p {
-  color: #a0a0a0;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 16px;
 }
 
@@ -52,7 +52,7 @@ body {
 }
 
 .section-description {
-  color: #a0a0a0;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
   margin-bottom: 16px;
 }
@@ -110,7 +110,7 @@ body {
 }
 
 .input-suffix {
-  color: #a0a0a0;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
 }
 
@@ -195,7 +195,7 @@ input[type="text"]::placeholder {
 .recommended-label {
   display: block;
   font-size: 12px;
-  color: #a0a0a0;
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: 12px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -204,7 +204,7 @@ input[type="text"]::placeholder {
 .recommended-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
 }
 
 .btn {
@@ -230,30 +230,41 @@ input[type="text"]::placeholder {
 .btn-secondary {
   background: transparent;
   border: 1px solid #3d3d5c;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.85);
   padding: 12px 24px;
 }
 
 .btn-secondary:hover {
   background: #2d2d44;
+  border-color: #4d4d6c;
+  transform: translateY(-1px);
 }
 
 .btn-small {
   background: #2d2d44;
-  color: #a0a0a0;
-  padding: 6px 12px;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 8px 14px;
   font-size: 12px;
 }
 
 .btn-small:hover {
   background: #3d3d5c;
   color: #ffffff;
+  transform: translateY(-1px);
 }
 
 .btn-large {
   width: 100%;
   padding: 16px 24px;
   font-size: 16px;
+}
+
+.btn-primary.btn-large {
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+}
+
+.btn-primary.btn-large:hover {
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
 }
 
 .connection-status {
@@ -289,6 +300,27 @@ input[type="text"]::placeholder {
 
 .save-status.visible {
   opacity: 1;
+}
+
+.toggle-label {
+  transition: all 0.2s ease;
+}
+
+.toggle-label:hover .toggle-slider {
+  background: #4d4d6c;
+}
+
+.toggle-label input:checked + .toggle-slider:hover,
+.toggle-label:hover input:checked + .toggle-slider {
+  background: #7c7ff7;
+}
+
+.section {
+  transition: border-color 0.2s ease;
+}
+
+.section:hover {
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 @media (max-width: 480px) {
