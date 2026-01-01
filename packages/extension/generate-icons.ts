@@ -1,44 +1,43 @@
 #!/usr/bin/env bun
 
-// Simple script to generate placeholder icons for the extension
-// Run with: bun run generate-icons.ts
-
 const sizes = [16, 48, 128];
+const ORANGE = "#ff3e00";
+const BLACK = "#050505";
+const DARK_GRAY = "#1a1a1a";
 
 async function generateIcon(size: number): Promise<Uint8Array> {
-  // Create a simple PNG with a gradient background and "TG" text
-  // Using a minimal PNG encoder approach
-  
   const canvas = new OffscreenCanvas(size, size);
   const ctx = canvas.getContext("2d")!;
   
-  // Gradient background (purple to blue)
-  const gradient = ctx.createLinearGradient(0, 0, size, size);
-  gradient.addColorStop(0, "#6366f1");
-  gradient.addColorStop(1, "#8b5cf6");
-  ctx.fillStyle = gradient;
+  ctx.fillStyle = BLACK;
+  ctx.fillRect(0, 0, size, size);
   
-  // Rounded rectangle
-  const radius = size * 0.2;
-  ctx.beginPath();
-  ctx.moveTo(radius, 0);
-  ctx.lineTo(size - radius, 0);
-  ctx.quadraticCurveTo(size, 0, size, radius);
-  ctx.lineTo(size, size - radius);
-  ctx.quadraticCurveTo(size, size, size - radius, size);
-  ctx.lineTo(radius, size);
-  ctx.quadraticCurveTo(0, size, 0, size - radius);
-  ctx.lineTo(0, radius);
-  ctx.quadraticCurveTo(0, 0, radius, 0);
-  ctx.closePath();
-  ctx.fill();
+  const borderWidth = Math.max(1, Math.floor(size / 16));
+  ctx.strokeStyle = ORANGE;
+  ctx.lineWidth = borderWidth;
+  ctx.strokeRect(borderWidth / 2, borderWidth / 2, size - borderWidth, size - borderWidth);
   
-  // Text "TG"
-  ctx.fillStyle = "#ffffff";
-  ctx.font = `bold ${size * 0.45}px -apple-system, BlinkMacSystemFont, sans-serif`;
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.fillText("TG", size / 2, size / 2 + size * 0.05);
+  const padding = size * 0.12;
+  ctx.fillStyle = DARK_GRAY;
+  ctx.fillRect(padding, padding, size - padding * 2, size - padding * 2);
+  
+  ctx.fillStyle = ORANGE;
+  const barWidth = Math.max(2, size * 0.08);
+  const barHeight = size * 0.5;
+  const startY = (size - barHeight) / 2;
+  
+  ctx.fillRect(size * 0.25, startY, barWidth, barHeight);
+  ctx.fillRect(size * 0.5 - barWidth / 2, startY - size * 0.08, barWidth, barHeight + size * 0.16);
+  ctx.fillRect(size * 0.75 - barWidth, startY, barWidth, barHeight);
+  
+  const crossY = size * 0.5 - barWidth / 2;
+  ctx.fillRect(size * 0.2, crossY, size * 0.6, barWidth);
+  
+  const accentSize = Math.max(2, size * 0.06);
+  ctx.fillRect(padding, padding, accentSize, accentSize);
+  ctx.fillRect(size - padding - accentSize, padding, accentSize, accentSize);
+  ctx.fillRect(padding, size - padding - accentSize, accentSize, accentSize);
+  ctx.fillRect(size - padding - accentSize, size - padding - accentSize, accentSize, accentSize);
   
   const blob = await canvas.convertToBlob({ type: "image/png" });
   return new Uint8Array(await blob.arrayBuffer());
