@@ -121,7 +121,8 @@ export class MacOSServiceManager implements ServiceManager {
       throw new Error("TokenGate server is already running.");
     }
 
-    await execAsync(`launchctl start ${SERVICE_NAME}`);
+    // Load the LaunchAgent (this also starts it due to RunAtLoad)
+    await execAsync(`launchctl load "${this.plistPath}"`);
   }
 
   async stop(): Promise<void> {
@@ -136,7 +137,8 @@ export class MacOSServiceManager implements ServiceManager {
       throw new Error("TokenGate server is not running.");
     }
 
-    await execAsync(`launchctl stop ${SERVICE_NAME}`);
+    // Unload the LaunchAgent to truly stop it (launchctl stop alone doesn't work with KeepAlive)
+    await execAsync(`launchctl unload "${this.plistPath}"`);
   }
 
   async status(): Promise<ServiceStatus> {
