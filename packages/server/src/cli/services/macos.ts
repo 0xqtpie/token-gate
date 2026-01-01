@@ -30,6 +30,9 @@ export class MacOSServiceManager implements ServiceManager {
   }
 
   private generatePlist(runtime: string): string {
+    // Capture current PATH so LaunchAgent can find bunx, opencode, etc.
+    const currentPath = process.env.PATH || "/usr/bin:/bin:/usr/sbin:/sbin";
+    
     return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -41,6 +44,11 @@ export class MacOSServiceManager implements ServiceManager {
         <string>${runtime}</string>
         <string>${this.paths.serverEntry}</string>
     </array>
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>${currentPath}</string>
+    </dict>
     <key>RunAtLoad</key>
     <true/>
     <key>KeepAlive</key>

@@ -71,11 +71,21 @@ export async function commandExists(command: string): Promise<boolean> {
   }
 }
 
-export async function bunxPackageExists(packageName: string): Promise<boolean> {
-  try {
-    const result = await exec("bunx", [packageName, "--help"], { timeout: 15000 });
-    return result.exitCode === 0 || result.stdout.length > 0 || result.stderr.length > 0;
-  } catch {
-    return false;
-  }
+let cachedPackageRunner: string | null = null;
+
+export async function getPackageRunner(): Promise<string> {
+  if (cachedPackageRunner) return cachedPackageRunner;
+  
+  const hasBunx = await commandExists("bunx");
+  cachedPackageRunner = hasBunx ? "bunx" : "npx";
+  return cachedPackageRunner;
+}
+
+export async function runPackage(
+  packageName: string,
+  args: string[] = [],
+  options: ExecOptions = {}
+): Promise<ExecResult> {
+  const runner = await getPackageRunner();
+  return exec(runner, [packageName, ...args], options);
 }

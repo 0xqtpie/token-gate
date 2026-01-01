@@ -1,5 +1,5 @@
 import type { UsageAdapter, UsageData } from "./types.js";
-import { exec } from "../utils/exec.js";
+import { runPackage } from "../utils/exec.js";
 import { getTodayYYYYMMDD } from "../utils/date.js";
 
 interface CcusageResponse {
@@ -21,7 +21,7 @@ export const claudeCodeAdapter: UsageAdapter = {
 
   async check(): Promise<boolean> {
     try {
-      const result = await exec("bunx", ["ccusage", "--help"], { timeout: 15000 });
+      const result = await runPackage("ccusage", ["--help"], { timeout: 15000 });
       return result.stdout.length > 0 || result.stderr.length > 0;
     } catch {
       return false;
@@ -30,7 +30,7 @@ export const claudeCodeAdapter: UsageAdapter = {
 
   async getUsage(): Promise<UsageData> {
     const today = getTodayYYYYMMDD();
-    const result = await exec("bunx", ["ccusage", "daily", "--json", "--since", today], {
+    const result = await runPackage("ccusage", ["daily", "--json", "--since", today], {
       timeout: 30000,
     });
 
