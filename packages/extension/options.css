@@ -26,7 +26,7 @@ body {
   font-size: 32px;
   font-weight: 700;
   margin-bottom: 8px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #14b8a6, #06b6d4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -91,7 +91,7 @@ body {
 }
 
 .toggle-label input:checked + .toggle-slider {
-  background: #6366f1;
+  background: #14b8a6;
 }
 
 .toggle-label input:checked + .toggle-slider::after {
@@ -128,7 +128,7 @@ input[type="number"] {
 input[type="text"]:focus,
 input[type="number"]:focus {
   outline: none;
-  border-color: #6366f1;
+  border-color: #14b8a6;
 }
 
 input[type="text"]::placeholder {
@@ -217,14 +217,14 @@ input[type="text"]::placeholder {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  background: linear-gradient(135deg, #0d9488, #14b8a6);
   color: #ffffff;
   padding: 12px 24px;
 }
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.5);
 }
 
 .btn-secondary {
@@ -260,11 +260,11 @@ input[type="text"]::placeholder {
 }
 
 .btn-primary.btn-large {
-  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 4px 16px rgba(20, 184, 166, 0.3);
 }
 
 .btn-primary.btn-large:hover {
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.5);
 }
 
 .connection-status {
@@ -312,7 +312,7 @@ input[type="text"]::placeholder {
 
 .toggle-label input:checked + .toggle-slider:hover,
 .toggle-label:hover input:checked + .toggle-slider {
-  background: #7c7ff7;
+  background: #0d9488;
 }
 
 .section {
