@@ -38,11 +38,12 @@ body {
 }
 
 .section {
-  background: #1a1a2e;
+  background: linear-gradient(145deg, #1a1a2e, #161625);
   border-radius: 16px;
   padding: 24px;
   margin-bottom: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .section h2 {
@@ -188,7 +189,8 @@ input[type="text"]::placeholder {
 }
 
 .recommended-domains {
-  padding-top: 16px;
+  padding-top: 20px;
+  margin-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -204,7 +206,7 @@ input[type="text"]::placeholder {
 .recommended-buttons {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn {
@@ -241,15 +243,17 @@ input[type="text"]::placeholder {
 }
 
 .btn-small {
-  background: #2d2d44;
-  color: rgba(255, 255, 255, 0.7);
-  padding: 8px 14px;
+  background: rgba(20, 184, 166, 0.1);
+  color: rgba(20, 184, 166, 0.8);
+  padding: 6px 12px;
   font-size: 12px;
+  border: 1px solid rgba(20, 184, 166, 0.2);
 }
 
 .btn-small:hover {
-  background: #3d3d5c;
-  color: #ffffff;
+  background: rgba(20, 184, 166, 0.2);
+  color: #14b8a6;
+  border-color: rgba(20, 184, 166, 0.4);
   transform: translateY(-1px);
 }
 
@@ -260,11 +264,15 @@ input[type="text"]::placeholder {
 }
 
 .btn-primary.btn-large {
-  box-shadow: 0 4px 16px rgba(20, 184, 166, 0.3);
+  box-shadow: 0 4px 20px rgba(20, 184, 166, 0.4);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 .btn-primary.btn-large:hover {
-  box-shadow: 0 6px 20px rgba(20, 184, 166, 0.5);
+  box-shadow: 0 6px 28px rgba(20, 184, 166, 0.6);
+  transform: translateY(-2px);
 }
 
 .connection-status {
