@@ -1,0 +1,53 @@
+{
+  "name": "tokengate-server",
+  "version": "1.0.0",
+  "description": "Local server that aggregates token usage from AI coding tools",
+  "type": "module",
+  "bin": {
+    "tokengate-server": "./dist/cli/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run src/cli/index.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "npm run build",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "^4.11.3"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22",
+    "typescript": "^5"
+  },
+  "keywords": [
+    "ai",
+    "tokens",
+    "usage",
+    "claude",
+    "opencode",
+    "codex",
+    "productivity"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/token-gate"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

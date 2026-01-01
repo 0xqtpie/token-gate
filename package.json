@@ -1,0 +1,30 @@
+{
+  "name": "token-gate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Block distracting websites until you've hit your daily AI coding token goals",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "bun run --cwd packages/server dev",
+    "start": "bun run --cwd packages/server start",
+    "typecheck": "bun run --cwd packages/server typecheck"
+  },
+  "keywords": [
+    "productivity",
+    "ai",
+    "tokens",
+    "focus",
+    "blocker"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "sharp": "^0.34.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

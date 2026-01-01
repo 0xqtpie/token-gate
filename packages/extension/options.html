@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TokenGate Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <h1>TokenGate Settings</h1>
+      <p>Configure your productivity blocking</p>
+    </header>
+
+    <main class="options-main">
+      <section class="section">
+        <h2>Enable/Disable</h2>
+        <label class="toggle-label">
+          <span>Enable TokenGate blocking</span>
+          <input type="checkbox" id="enable-toggle" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </section>
+
+      <section class="section">
+        <h2>Token Threshold</h2>
+        <p class="section-description">
+          Minimum tokens required to unblock distracting sites
+        </p>
+        <div class="input-group">
+          <input type="number" id="threshold-input" min="0" step="1000" value="50000">
+          <span class="input-suffix">tokens</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Blocked Domains</h2>
+        <p class="section-description">
+          Sites that will be blocked until you hit your token goal.
+          Use *.domain.com for wildcard matching.
+        </p>
+        
+        <div id="domain-list" class="domain-list"></div>
+        
+        <div class="add-domain">
+          <input type="text" id="new-domain-input" placeholder="Enter domain (e.g., twitter.com)">
+          <button id="add-domain-btn" class="btn btn-primary">Add</button>
+        </div>
+
+        <div class="recommended-domains">
+          <span class="recommended-label">Quick add:</span>
+          <div class="recommended-buttons">
+            <button class="btn btn-small" data-domain="x.com">x.com</button>
+            <button class="btn btn-small" data-domain="twitter.com">twitter.com</button>
+            <button class="btn btn-small" data-domain="reddit.com">reddit.com</button>
+            <button class="btn btn-small" data-domain="youtube.com">youtube.com</button>
+            <button class="btn btn-small" data-domain="netflix.com">netflix.com</button>
+            <button class="btn btn-small" data-domain="instagram.com">instagram.com</button>
+            <button class="btn btn-small" data-domain="facebook.com">facebook.com</button>
+            <button class="btn btn-small" data-domain="pornhub.com">pornhub.com</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Server Configuration</h2>
+        <p class="section-description">
+          URL of the TokenGate server running on your machine
+        </p>
+        <div class="input-row">
+          <input type="text" id="server-url-input" value="http://localhost:3847">
+          <button id="test-connection-btn" class="btn btn-secondary">Test Connection</button>
+        </div>
+        <div id="connection-status" class="connection-status"></div>
+      </section>
+
+      <section class="section">
+        <button id="save-btn" class="btn btn-primary btn-large">Save Settings</button>
+        <div id="save-status" class="save-status"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

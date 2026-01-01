@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <header class="popup-header">
+      <h1>TokenGate</h1>
+      <div id="status-indicator" class="status-indicator">
+        <span class="status-dot"></span>
+        <span class="status-text">Checking...</span>
+      </div>
+    </header>
+
+    <main class="popup-main">
+      <div id="loading" class="loading">
+        <div class="spinner"></div>
+      </div>
+
+      <div id="content" class="content hidden">
+        <div class="progress-section">
+          <div class="progress-header">
+            <span class="progress-label">Today's Progress</span>
+            <span id="progress-percentage" class="progress-percentage">0%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <div class="progress-tokens">
+            <span id="current-tokens">0</span> / <span id="threshold-tokens">50,000</span> tokens
+          </div>
+        </div>
+
+        <div id="breakdown" class="breakdown"></div>
+
+        <div class="toggle-section">
+          <label class="toggle-label">
+            <span>Enable blocking</span>
+            <input type="checkbox" id="enable-toggle" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div id="error" class="error hidden">
+        <p id="error-message">Cannot connect to server</p>
+      </div>
+    </main>
+
+    <footer class="popup-footer">
+      <a href="#" id="settings-link">Settings</a>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
