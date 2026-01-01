@@ -324,7 +324,7 @@ TokenGate server has been uninstalled.
 
 ## Testing Checklist
 
-- [ ] macOS: install, start, stop, status, uninstall
+- [x] macOS: install, start, stop, status, uninstall
 - [ ] macOS: survives logout/login
 - [ ] macOS: survives reboot
 - [ ] Linux: install, start, stop, status, uninstall

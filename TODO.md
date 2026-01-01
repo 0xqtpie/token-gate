@@ -15,7 +15,7 @@ This document tracks the implementation progress of TokenGate, consisting of:
 - [x] Create root `package.json` with Bun workspaces configuration
 - [x] Create root `.gitignore`
 - [x] Create root `README.md` with project overview
-- [ ] Initialize git repository
+- [x] Initialize git repository
 
 ### Server Package Setup
 - [x] Create `packages/server/package.json`
@@ -367,6 +367,8 @@ This document tracks the implementation progress of TokenGate, consisting of:
 - Icon generation requires `sharp` package (added as dev dependency)
 - OpenCode adapter parses text output (no --json flag available)
 - Server tested successfully with OpenCode returning real token data
+- Service management tested on macOS: install, start, stop, status, uninstall all work correctly
+- LaunchAgent KeepAlive behavior: stop command triggers auto-restart (by design)
 
 ---
 
