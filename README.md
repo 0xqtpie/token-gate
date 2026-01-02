@@ -35,11 +35,23 @@ TokenGate is a productivity tool that helps you stay focused by blocking distrac
 
 ### 1. Install the Server
 
+Works with **both Bun and Node.js** (18+):
+
 ```bash
-# Install globally
+# Using Bun (recommended)
 bun add -g tokengate-server
 
-# Install as background service (auto-starts on login)
+# Using npm
+npm install -g tokengate-server
+
+# Or run without installing
+bunx tokengate-server run
+npx tokengate-server run
+```
+
+Then install as a background service:
+
+```bash
 tokengate-server install
 ```
 
@@ -57,6 +69,16 @@ tokengate-server run        # Run in foreground (for debugging)
 ```
 
 ### 2. Install the Extension
+
+Download from Chrome Web Store (coming soon) or:
+
+```bash
+# Clone the repo
+git clone https://github.com/0xqtpie/token-gate
+cd token-gate
+```
+
+### Load unpacked in Chrome
 
 1. Open Chrome and go to `chrome://extensions`
 2. Enable "Developer mode" (toggle in top right)
@@ -97,14 +119,14 @@ A Chrome extension that:
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/token-gate
+git clone https://github.com/0xqtpie/token-gate
 cd token-gate
 
-# Install dependencies
-bun install
+# Install dependencies (Bun recommended, npm works too)
+bun install    # or: npm install
 
 # Start the server in dev mode
-bun run dev
+bun run dev    # or: npm run dev
 
 # Load the extension in Chrome (see above)
 ```
@@ -113,11 +135,11 @@ bun run dev
 
 ### Server Options
 
-| Option      | Default | Description                    |
-| ----------- | ------- | ------------------------------ |
-| `PORT`      | 3847    | Port to listen on              |
-| `CACHE_TTL` | 30      | Seconds to cache usage data    |
-| `ADAPTERS`  | all     | Comma-separated adapter list   |
+| Option      | Default | Description                  |
+| ----------- | ------- | ---------------------------- |
+| `PORT`      | 3847    | Port to listen on            |
+| `CACHE_TTL` | 30      | Seconds to cache usage data  |
+| `ADAPTERS`  | all     | Comma-separated adapter list |
 
 ### Extension Settings
 

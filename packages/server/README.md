@@ -4,12 +4,16 @@ Local HTTP server that aggregates token usage from multiple AI coding tools.
 
 ## Installation
 
+Works with **both Bun and Node.js** (18+). The server auto-detects which runtime is available.
+
 ```bash
-# Run without installing (foreground)
-bunx tokengate-server run
+# Run without installing
+bunx tokengate-server run    # Using Bun
+npx tokengate-server run     # Using Node.js
 
 # Or install globally
-bun add -g tokengate-server
+bun add -g tokengate-server  # Using Bun
+npm install -g tokengate-server  # Using npm
 ```
 
 ## Usage
@@ -130,11 +134,13 @@ Health check endpoint.
 
 ## Supported Tools
 
-| Tool        | Adapter      | Command                              |
-| ----------- | ------------ | ------------------------------------ |
-| Claude Code | claude-code  | `ccusage daily --json`               |
-| OpenCode    | opencode     | `opencode stats --days 1`            |
-| Codex       | codex        | `@ccusage/codex daily --json`        |
+| Tool        | Adapter      | Command                                   |
+| ----------- | ------------ | ----------------------------------------- |
+| Claude Code | claude-code  | `ccusage daily --json --since YYYYMMDD`   |
+| OpenCode    | opencode     | `opencode stats --days 1`                 |
+| Codex       | codex        | `@ccusage/codex daily --json --since YYYYMMDD` |
+
+> Note: `YYYYMMDD` is automatically set to today's date at runtime.
 
 ## Configuration
 
@@ -148,23 +154,35 @@ Health check endpoint.
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/token-gate
+git clone https://github.com/0xqtpie/token-gate
 cd token-gate/packages/server
 
 # Install dependencies
-bun install
+bun install    # or: npm install
 
 # Run in dev mode (with hot reload)
-bun run dev
+bun run dev    # or: npm run dev
 ```
 
 ## How It Works
 
 1. The server starts and discovers which AI coding tools are installed
-2. When `/usage` is requested, it runs each tool's CLI command
+2. When `/usage` is requested, it runs each tool's CLI command (using `bunx` or `npx` based on availability)
 3. Results are parsed and aggregated
 4. Response is cached for the configured TTL (default 30s)
 5. Individual adapter failures don't break the whole response
+
+## Runtime Compatibility
+
+The server automatically adapts to your environment:
+
+| Component | Bun | Node.js |
+|-----------|-----|---------|
+| HTTP Server | `Bun.serve()` | `node:http` |
+| Package Runner | `bunx` | `npx` |
+| Background Service | Uses `bun` if available | Falls back to `node` |
+
+No configuration needed—just run with your preferred runtime.
 
 ## License
 

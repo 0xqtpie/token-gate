@@ -45,7 +45,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/token-gate"
+    "url": "https://github.com/0xqtpie/token-gate"
   },
   "engines": {
     "node": ">=18"
