@@ -4,15 +4,17 @@
 
 TokenGate is a productivity tool that helps you stay focused by blocking distracting websites until you've done meaningful work with AI coding tools like Claude Code, OpenCode, and Codex.
 
-## Screenshots
-
 <p align="center">
-  <img src="screenshots/1.png" width="400" alt="Blocking overlay showing ACCESS_DENIED">
   <img src="screenshots/2.png" width="280" alt="Popup showing token usage breakdown">
+  <img src="screenshots/1.png" width="400" alt="Blocking overlay showing ACCESS_DENIED">
 </p>
 
 <p align="center">
-  <em>Left: Blocking overlay when quota not met · Right: Popup with token breakdown by source</em>
+  <img src="screenshots/3.png" width="400" alt="Settings page">
+</p>
+
+<p align="center">
+  <em>TokenGate in action</em>
 </p>
 
 ## How It Works
