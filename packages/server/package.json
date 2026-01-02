@@ -1,6 +1,6 @@
 {
   "name": "tokengate-server",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Local server that aggregates token usage from AI coding tools",
   "type": "module",
   "bin": {

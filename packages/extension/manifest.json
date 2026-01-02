@@ -3,6 +3,8 @@
   "name": "TokenGate",
   "version": "1.0.0",
   "description": "Block distracting sites until you hit your daily coding token goals",
+  "homepage_url": "https://github.com/0xqtpie/token-gate",
+  "offline_enabled": false,
 
   "permissions": ["storage", "tabs", "webNavigation"],
 
@@ -10,6 +12,10 @@
 
   "background": {
     "service_worker": "background.js"
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   },
 
   "content_scripts": [

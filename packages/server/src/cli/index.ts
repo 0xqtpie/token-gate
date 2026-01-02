@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { getServiceManager, DEFAULT_PORT } from "./services/index.js";
 
 const HELP_TEXT = `
@@ -45,33 +46,32 @@ async function runServer(): Promise<void> {
 ╚═══════════════════════════════════════════════════════════╝
 `);
 
-  const server = Bun?.serve?.({
-    port: config.port,
-    fetch: app.fetch,
-  });
-
-  if (server) {
+  const hasBun = typeof Bun !== "undefined" && typeof Bun.serve === "function";
+  
+  if (hasBun) {
+    Bun.serve({ port: config.port, fetch: app.fetch });
     console.log(`Started server: http://localhost:${config.port}`);
-  } else {
-    const { createServer: createHttpServer } = await import("node:http");
-    const httpServer = createHttpServer(async (req, res) => {
-      const url = new URL(req.url || "/", `http://localhost:${config.port}`);
-      const request = new Request(url.toString(), {
-        method: req.method,
-        headers: req.headers as HeadersInit,
-      });
-      const response = await app.fetch(request);
-      res.statusCode = response.status;
-      response.headers.forEach((value, key) => {
-        res.setHeader(key, value);
-      });
-      const body = await response.text();
-      res.end(body);
-    });
-    httpServer.listen(config.port, () => {
-      console.log(`Started server: http://localhost:${config.port}`);
-    });
+    return;
   }
+
+  const { createServer: createHttpServer } = await import("node:http");
+  const httpServer = createHttpServer(async (req, res) => {
+    const url = new URL(req.url || "/", `http://localhost:${config.port}`);
+    const request = new Request(url.toString(), {
+      method: req.method,
+      headers: req.headers as HeadersInit,
+    });
+    const response = await app.fetch(request);
+    res.statusCode = response.status;
+    response.headers.forEach((value, key) => {
+      res.setHeader(key, value);
+    });
+    const body = await response.text();
+    res.end(body);
+  });
+  httpServer.listen(config.port, () => {
+    console.log(`Started server: http://localhost:${config.port}`);
+  });
 }
 
 async function handleInstall(): Promise<void> {
@@ -192,8 +192,8 @@ export async function main(args: string[]): Promise<void> {
 }
 
 declare const Bun: {
-  serve?: (options: { port: number; fetch: (req: Request) => Response | Promise<Response> }) => unknown;
-} | undefined;
+  serve: (options: { port: number; fetch: (req: Request) => Response | Promise<Response> }) => unknown;
+};
 
 const cliArgs = typeof process !== "undefined" ? process.argv.slice(2) : [];
 main(cliArgs);

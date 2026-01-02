@@ -1,42 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
-
 #tokengate-overlay {
   position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
+  inset: 0 !important;
   background: #050505 !important;
   z-index: 2147483647 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  font-family: 'Space Mono', monospace !important;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace !important;
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  overflow: hidden !important;
   animation: tokengate-fadein 0.3s ease-out !important;
 }
 
 @keyframes tokengate-fadein {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes tokengate-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .tokengate-card {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
   background: #0a0a0a !important;
   border: 2px solid #252525 !important;
   padding: 40px 48px !important;
-  max-width: 440px !important;
-  width: 90% !important;
+  width: min(440px, 90vw) !important;
   text-align: center !important;
-  position: relative !important;
+  box-sizing: border-box !important;
 }
 
 .tokengate-card::before {
-  content: '' !important;
+  content: "" !important;
   position: absolute !important;
   top: -2px !important;
   left: -2px !important;
@@ -47,7 +55,7 @@
 }
 
 .tokengate-card::after {
-  content: '' !important;
+  content: "" !important;
   position: absolute !important;
   bottom: -2px !important;
   right: -2px !important;
@@ -70,7 +78,7 @@
   font-size: 13px !important;
   font-weight: 700 !important;
   color: #888888 !important;
-  letter-spacing: 3px !important;
+  letter-spacing: -1px !important;
 }
 
 .tokengate-status {
@@ -151,7 +159,7 @@
 }
 
 .tokengate-progress-fill::after {
-  content: '' !important;
+  content: "" !important;
   position: absolute !important;
   top: 0 !important;
   right: 0 !important;
@@ -167,7 +175,11 @@
   left: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  background-image: linear-gradient(90deg, transparent 90%, #0a0a0a 90%) !important;
+  background-image: linear-gradient(
+    90deg,
+    transparent 90%,
+    #0a0a0a 90%
+  ) !important;
   background-size: 10% 100% !important;
   pointer-events: none !important;
 }
@@ -215,14 +227,17 @@
 }
 
 .tokengate-btn {
-  padding: 12px 24px !important;
+  height: 40px !important;
+  padding: 0 24px !important;
   font-size: 11px !important;
   font-weight: 700 !important;
+  line-height: 40px !important;
   cursor: pointer !important;
   border: none !important;
   letter-spacing: 2px !important;
-  font-family: 'Space Mono', monospace !important;
-  transition: all 0.15s ease !important;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace !important;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
 }
 
 .tokengate-btn-primary {
@@ -267,7 +282,7 @@
   color: #ff3e00 !important;
   padding: 12px 14px !important;
   border: 1px solid #252525 !important;
-  font-family: 'Space Mono', monospace !important;
+  font-family: inherit !important;
   font-size: 12px !important;
 }
 
