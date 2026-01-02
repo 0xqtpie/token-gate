@@ -46,6 +46,7 @@ export const claudeCodeAdapter: UsageAdapter = {
     return {
       inputTokens,
       outputTokens,
+      reasoningTokens: 0,
       totalTokens: inputTokens + outputTokens,
     };
   },

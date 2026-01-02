@@ -157,7 +157,6 @@ The extension comes pre-configured to block common distracting sites:
 - netflix.com
 - instagram.com
 - facebook.com
-- pornhub.com
 
 ## Design Decisions
 

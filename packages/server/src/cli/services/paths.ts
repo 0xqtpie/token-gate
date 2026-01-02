@@ -55,7 +55,7 @@ export function getServicePaths(): ServicePaths {
     logsDir,
     serverDir,
     runtime: "",
-    serverEntry: join(serverDir, "index.js"),
+    serverEntry: join(serverDir, "server.bundle.js"),
   };
 }
 
@@ -71,11 +71,18 @@ export async function copyServerFiles(paths: ServicePaths): Promise<void> {
   const srcDir = dirname(srcCliDir);
   const packageDir = dirname(srcDir);
   const distDir = join(packageDir, "dist");
+  const bundledEntry = join(distDir, "server.bundle.js");
 
   if (!existsSync(distDir)) {
     throw new Error(
       "Server distribution not found. The package may not be built correctly.\n" +
         "If you're developing locally, run 'bun run build' first."
+    );
+  }
+
+  if (!existsSync(bundledEntry)) {
+    throw new Error(
+      "Bundled server entry missing. Run 'bun run build' (which creates dist/server.bundle.js) before installing."
     );
   }
 

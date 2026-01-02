@@ -62,6 +62,7 @@ export const opencodeAdapter: UsageAdapter = {
     return {
       inputTokens: input,
       outputTokens: output,
+      reasoningTokens: 0,
       totalTokens: input + output,
     };
   },

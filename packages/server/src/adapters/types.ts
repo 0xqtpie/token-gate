@@ -8,7 +8,8 @@
 export interface UsageData {
   inputTokens: number;
   outputTokens: number;
-  totalTokens: number; // inputTokens + outputTokens
+  reasoningTokens: number; // 0 for models without reasoning
+  totalTokens: number; // inputTokens + outputTokens + reasoningTokens (excludes cache)
 }
 
 /**
@@ -36,6 +37,7 @@ export interface AdapterResult {
   displayName: string;
   inputTokens: number;
   outputTokens: number;
+  reasoningTokens: number;
   totalTokens: number;
   available: boolean;
   error?: string;

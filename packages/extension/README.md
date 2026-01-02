@@ -26,6 +26,7 @@ bunx tokengate-server
 ### Quick Status (Popup)
 
 Click the TokenGate icon in your toolbar to see:
+
 - Current token count vs your threshold
 - Progress bar visualization
 - Connection status
@@ -34,6 +35,7 @@ Click the TokenGate icon in your toolbar to see:
 ### Settings (Options Page)
 
 Right-click the extension icon → "Options" (or click "Settings" in popup) to:
+
 - Add/remove blocked domains
 - Set your token threshold
 - Configure server URL
@@ -42,13 +44,13 @@ Right-click the extension icon → "Options" (or click "Settings" in popup) to:
 ## Default Blocked Domains
 
 The extension comes pre-configured to block:
+
 - x.com / twitter.com
 - reddit.com
 - youtube.com
 - netflix.com
 - instagram.com
 - facebook.com
-- pornhub.com
 
 ## How It Works
 
@@ -60,12 +62,14 @@ The extension comes pre-configured to block:
 ## Wildcard Domains
 
 You can use wildcards to block all subdomains:
+
 - `*.reddit.com` blocks `old.reddit.com`, `new.reddit.com`, etc.
 - `reddit.com` only blocks `reddit.com` and `www.reddit.com`
 
 ## Offline Behavior
 
 If the TokenGate server isn't running:
+
 - Sites are NOT blocked
 - A warning overlay appears with instructions to start the server
 - This prevents you from being locked out if something goes wrong

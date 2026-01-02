@@ -18,6 +18,7 @@ export async function aggregateUsage(
             displayName: adapter.displayName,
             inputTokens: 0,
             outputTokens: 0,
+            reasoningTokens: 0,
             totalTokens: 0,
             available: false,
             error: `${adapter.displayName} not installed`,
@@ -31,6 +32,7 @@ export async function aggregateUsage(
           displayName: adapter.displayName,
           inputTokens: usage.inputTokens,
           outputTokens: usage.outputTokens,
+          reasoningTokens: usage.reasoningTokens,
           totalTokens: usage.totalTokens,
           available: true,
         };
@@ -41,6 +43,7 @@ export async function aggregateUsage(
           displayName: adapter.displayName,
           inputTokens: 0,
           outputTokens: 0,
+          reasoningTokens: 0,
           totalTokens: 0,
           available: false,
           error: message,
@@ -53,9 +56,10 @@ export async function aggregateUsage(
     (acc, result) => ({
       inputTokens: acc.inputTokens + result.inputTokens,
       outputTokens: acc.outputTokens + result.outputTokens,
+      reasoningTokens: acc.reasoningTokens + result.reasoningTokens,
       totalTokens: acc.totalTokens + result.totalTokens,
     }),
-    { inputTokens: 0, outputTokens: 0, totalTokens: 0 }
+    { inputTokens: 0, outputTokens: 0, reasoningTokens: 0, totalTokens: 0 }
   );
 
   return {

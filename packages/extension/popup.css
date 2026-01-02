@@ -8,7 +8,7 @@
   --text-secondary: #888888;
   --success-color: #00ff41;
   --error-color: #ff003c;
-  --font-stack: 'Space Mono', monospace;
+  --font-stack: "Space Mono", monospace;
 }
 
 * {
@@ -49,8 +49,8 @@ body {
 
 .popup-container {
   padding: 20px;
-  background: 
-    linear-gradient(90deg, var(--bg-color) 21px, transparent 1%) center,
+  background: linear-gradient(90deg, var(--bg-color) 21px, transparent 1%)
+      center,
     linear-gradient(var(--bg-color) 21px, transparent 1%) center,
     rgba(255, 255, 255, 0.03);
   background-size: 22px 22px;
@@ -75,7 +75,7 @@ body {
 .brand-icon {
   color: var(--accent-color);
   font-size: 14px;
-  animation: blink 1s step-end infinite;
+  animation: blink 2s step-end infinite;
 }
 
 .popup-header h1 {
@@ -84,6 +84,9 @@ body {
   letter-spacing: -1px;
   color: var(--text-primary);
   text-transform: uppercase;
+  /* border-right: 2px solid var(--accent-color);
+  border-left: 2px solid var(--accent-color);
+  padding: 0 4px; */
 }
 
 .status-indicator {
@@ -141,7 +144,7 @@ body {
 }
 
 .loader-bar::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -152,12 +155,18 @@ body {
 }
 
 @keyframes load {
-  0% { left: -30%; }
-  100% { left: 100%; }
+  0% {
+    left: -30%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Progress Section */
@@ -196,7 +205,7 @@ body {
 }
 
 .progress-fill::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   right: 0;
@@ -212,7 +221,11 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(90deg, transparent 95%, var(--bg-color) 95%);
+  background-image: linear-gradient(
+    90deg,
+    transparent 95%,
+    var(--bg-color) 95%
+  );
   background-size: 5% 100%;
   pointer-events: none;
 }

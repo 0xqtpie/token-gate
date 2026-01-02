@@ -1,6 +1,6 @@
 {
   "name": "token-gate",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "Block distracting websites until you've hit your daily AI coding token goals",
   "workspaces": [

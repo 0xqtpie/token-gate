@@ -8,11 +8,10 @@ const DEFAULT_CONFIG = {
     "youtube.com",
     "instagram.com",
     "facebook.com",
-    "pornhub.com"
   ],
   tokenThreshold: 50000,
   serverUrl: "http://localhost:3847",
-  enabled: true
+  enabled: true,
 };
 
 async function getConfig() {
@@ -43,13 +42,16 @@ async function fetchUsage(serverUrl) {
 
 function matchDomain(hostname, patterns) {
   const normalizedHostname = hostname.toLowerCase().replace(/^www\./, "");
-  
+
   for (const pattern of patterns) {
     const normalizedPattern = pattern.toLowerCase().replace(/^www\./, "");
-    
+
     if (normalizedPattern.startsWith("*.")) {
       const suffix = normalizedPattern.slice(2);
-      if (normalizedHostname === suffix || normalizedHostname.endsWith("." + suffix)) {
+      if (
+        normalizedHostname === suffix ||
+        normalizedHostname.endsWith("." + suffix)
+      ) {
         return true;
       }
     } else {
@@ -58,7 +60,7 @@ function matchDomain(hostname, patterns) {
       }
     }
   }
-  
+
   return false;
 }
 
