@@ -1,14 +1,3 @@
-const DEFAULT_CONFIG = {
-  blockedDomains: [],
-  tokenThreshold: 50000,
-  serverUrl: "http://localhost:3847",
-  enabled: true
-};
-
-function formatTokens(num) {
-  return num.toLocaleString();
-}
-
 async function loadData() {
   const loading = document.getElementById("loading");
   const content = document.getElementById("content");

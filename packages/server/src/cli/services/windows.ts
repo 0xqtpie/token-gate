@@ -26,7 +26,7 @@ export class WindowsServiceManager implements ServiceManager {
   }
 
   private generateVbsScript(runtime: string): string {
-    const cmd = `${runtime} "${this.paths.serverEntry}"`;
+    const cmd = `"${runtime}" "${this.paths.serverEntry}"`;
     return `Set WshShell = CreateObject("WScript.Shell")
 WshShell.Run "cmd /c ${cmd.replace(/"/g, '""')}", 0, False
 `;

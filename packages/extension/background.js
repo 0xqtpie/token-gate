@@ -1,18 +1,4 @@
-const DEFAULT_CONFIG = {
-  blockedDomains: [
-    "x.com",
-    "twitter.com",
-    "reddit.com",
-    "*.reddit.com",
-    "netflix.com",
-    "youtube.com",
-    "instagram.com",
-    "facebook.com",
-  ],
-  tokenThreshold: 50000,
-  serverUrl: "http://localhost:3847",
-  enabled: true,
-};
+importScripts("utils.js");
 
 const blockedTabs = new Map();
 let pollingInterval = null;
@@ -22,30 +8,6 @@ chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({ ...DEFAULT_CONFIG, ...existing });
   });
 });
-
-function matchDomain(hostname, patterns) {
-  const normalizedHostname = hostname.toLowerCase().replace(/^www\./, "");
-
-  for (const pattern of patterns) {
-    const normalizedPattern = pattern.toLowerCase().replace(/^www\./, "");
-
-    if (normalizedPattern.startsWith("*.")) {
-      const suffix = normalizedPattern.slice(2);
-      if (
-        normalizedHostname === suffix ||
-        normalizedHostname.endsWith("." + suffix)
-      ) {
-        return true;
-      }
-    } else {
-      if (normalizedHostname === normalizedPattern) {
-        return true;
-      }
-    }
-  }
-
-  return false;
-}
 
 function trackTab(tabId, serverUrl, threshold) {
   const wasEmpty = blockedTabs.size === 0;

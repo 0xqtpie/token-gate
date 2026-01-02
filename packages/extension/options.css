@@ -376,6 +376,10 @@ input[type="number"]:focus {
   opacity: 1;
 }
 
+.save-status.error {
+  color: var(--error-color);
+}
+
 .actions {
   border: none;
   background: transparent;

@@ -1,5 +1,8 @@
 import { createServer } from "./server.js";
 import { loadConfig } from "./config.js";
+import { rotateLogs } from "./utils/logs.js";
+
+await rotateLogs();
 
 const config = loadConfig();
 const app = createServer(config);

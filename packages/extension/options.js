@@ -1,21 +1,4 @@
-const DEFAULT_CONFIG = {
-  blockedDomains: [
-    "x.com",
-    "twitter.com",
-    "reddit.com",
-    "*.reddit.com",
-    "netflix.com",
-    "youtube.com",
-    "instagram.com",
-    "facebook.com",
-    "pornhub.com"
-  ],
-  tokenThreshold: 50000,
-  serverUrl: "http://localhost:3847",
-  enabled: true
-};
-
-let currentConfig = { ...DEFAULT_CONFIG };
+let currentConfig = getDefaultConfig();
 
 function renderDomainList() {
   const container = document.getElementById("domain-list");
@@ -40,10 +23,26 @@ function addDomain(domain) {
   
   domain = domain.replace(/^https?:\/\//, "").replace(/^www\./, "").replace(/\/.*$/, "");
   
-  if (currentConfig.blockedDomains.includes(domain)) return;
+  const validation = validateDomainPattern(domain);
+  if (!validation.valid) {
+    showError(validation.error);
+    return;
+  }
   
-  currentConfig.blockedDomains.push(domain);
+  if (currentConfig.blockedDomains.includes(validation.value)) return;
+  
+  currentConfig.blockedDomains.push(validation.value);
   renderDomainList();
+}
+
+function showError(message) {
+  const statusEl = document.getElementById("save-status");
+  statusEl.textContent = `ERROR: ${message.toUpperCase()}`;
+  statusEl.classList.add("visible", "error");
+  
+  setTimeout(() => {
+    statusEl.classList.remove("visible", "error");
+  }, 3000);
 }
 
 function removeDomain(domain) {
@@ -73,8 +72,20 @@ async function testConnection() {
 }
 
 async function saveSettings() {
-  currentConfig.tokenThreshold = parseInt(document.getElementById("threshold-input").value, 10) || 50000;
-  currentConfig.serverUrl = document.getElementById("server-url-input").value;
+  const thresholdValidation = validateThreshold(document.getElementById("threshold-input").value);
+  if (!thresholdValidation.valid) {
+    showError(thresholdValidation.error);
+    return;
+  }
+  
+  const urlValidation = validateServerUrl(document.getElementById("server-url-input").value);
+  if (!urlValidation.valid) {
+    showError(urlValidation.error);
+    return;
+  }
+  
+  currentConfig.tokenThreshold = thresholdValidation.value;
+  currentConfig.serverUrl = urlValidation.value;
   currentConfig.enabled = document.getElementById("enable-toggle").checked;
   
   await new Promise((resolve) => {

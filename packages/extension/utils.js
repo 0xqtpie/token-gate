@@ -8,6 +8,7 @@ const DEFAULT_CONFIG = {
     "youtube.com",
     "instagram.com",
     "facebook.com",
+    "pornhub.com",
   ],
   tokenThreshold: 50000,
   serverUrl: "http://localhost:3847",
@@ -75,4 +76,46 @@ function formatProgress(current, total) {
 
 function calculateProgress(current, total) {
   return Math.min(100, (current / total) * 100);
+}
+
+function validateThreshold(value) {
+  const num = parseInt(value, 10);
+  if (isNaN(num) || num <= 0) {
+    return { valid: false, error: "Threshold must be a positive number" };
+  }
+  return { valid: true, value: num };
+}
+
+function validateServerUrl(url) {
+  if (!url || typeof url !== "string") {
+    return { valid: false, error: "Server URL is required" };
+  }
+  
+  try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      return { valid: false, error: "URL must use http or https protocol" };
+    }
+    return { valid: true, value: url };
+  } catch {
+    return { valid: false, error: "Invalid URL format" };
+  }
+}
+
+function validateDomainPattern(pattern) {
+  if (!pattern || typeof pattern !== "string") {
+    return { valid: false, error: "Domain pattern is required" };
+  }
+  
+  const trimmed = pattern.trim().toLowerCase();
+  if (trimmed.length === 0) {
+    return { valid: false, error: "Domain pattern cannot be empty" };
+  }
+  
+  const domainRegex = /^(\*\.)?[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/;
+  if (!domainRegex.test(trimmed)) {
+    return { valid: false, error: "Invalid domain pattern format" };
+  }
+  
+  return { valid: true, value: trimmed };
 }

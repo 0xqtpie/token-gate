@@ -64,7 +64,8 @@ export async function exec(
 
 export async function commandExists(command: string): Promise<boolean> {
   try {
-    const result = await exec("which", [command]);
+    const checker = process.platform === "win32" ? "where" : "which";
+    const result = await exec(checker, [command]);
     return result.exitCode === 0 && result.stdout.trim().length > 0;
   } catch {
     return false;
