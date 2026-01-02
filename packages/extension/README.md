@@ -70,9 +70,8 @@ You can use wildcards to block all subdomains:
 
 If the TokenGate server isn't running:
 
-- Sites are NOT blocked
+- Sites are blocked by default
 - A warning overlay appears with instructions to start the server
-- This prevents you from being locked out if something goes wrong
 
 ## Troubleshooting
 

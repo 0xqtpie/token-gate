@@ -4,6 +4,17 @@
 
 TokenGate is a productivity tool that helps you stay focused by blocking distracting websites until you've done meaningful work with AI coding tools like Claude Code, OpenCode, and Codex.
 
+## Screenshots
+
+<p align="center">
+  <img src="screenshots/1.png" width="400" alt="Blocking overlay showing ACCESS_DENIED">
+  <img src="screenshots/2.png" width="280" alt="Popup showing token usage breakdown">
+</p>
+
+<p align="center">
+  <em>Left: Blocking overlay when quota not met · Right: Popup with token breakdown by source</em>
+</p>
+
 ## How It Works
 
 ```
@@ -161,7 +172,7 @@ The extension comes pre-configured to block common distracting sites:
 ## Design Decisions
 
 - **No bypass** - There's no way to bypass the block. You must hit your token goal.
-- **Offline behavior** - If the server isn't running, sites are NOT blocked (with a warning shown)
+- **Offline behavior** - If the server isn't running, sites are blocked by default (with a warning shown)
 - **24-hour period** - Token counting resets at midnight local time
 
 ## License
